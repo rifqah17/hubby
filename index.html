@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For My Hubby 💖</title>
+
+<style>
+body {
+  margin: 0;
+  overflow: hidden;
+  font-family: 'Comic Sans MS', cursive;
+  background: black;
+  color: white;
+  text-align: center;
+}
+
+/* Hearts */
+.heart {
+  position: fixed;
+  color: pink;
+  font-size: 20px;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  0% {transform: translateY(-10vh);}
+  100% {transform: translateY(110vh);}
+}
+
+/* Center */
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Button */
+button {
+  padding: 15px 25px;
+  font-size: 18px;
+  border-radius: 20px;
+  border: none;
+  background: pink;
+  cursor: pointer;
+}
+
+/* Text */
+#text {
+  font-size: 22px;
+  max-width: 600px;
+  margin: auto;
+}
+
+/* Countdown */
+#countdown {
+  font-size: 50px;
+  margin-bottom: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <div id="countdown">3</div>
+  <h1 id="title">🎂 Something for you...</h1>
+  <button onclick="start()">Tap here 😳</button>
+  <p id="text"></p>
+</div>
+
+<!-- 🎵 MUSIC -->
+<audio id="music" loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+/* Hearts */
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerHTML = "💖";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 5000);
+}
+setInterval(createHeart, 300);
+
+/* Countdown */
+let count = 3;
+const countdownEl = document.getElementById("countdown");
+
+const countdown = setInterval(() => {
+  count--;
+  countdownEl.innerHTML = count;
+
+  if (count === 0) {
+    clearInterval(countdown);
+    countdownEl.innerHTML = "🎉";
+  }
+}, 1000);
+
+/* Message */
+const message = [
+"Happy Birthday Hubby 🎂💖",
+"",
+"Today is not just a normal day...",
+"It’s the day my favorite person was born 🥺",
+"",
+"I may be far away...",
+"But my heart is always with you 🫶",
+"",
+"I hope you stay healthy, happy,",
+"And everything goes smoothly ✨",
+"",
+"Your career better keep getting AMAZING 😤💖",
+"",
+"You’re cute... annoying... but mine 😭💕",
+"",
+"I’m really serious about you 💍",
+"",
+"Now listen carefully...",
+"",
+"COME HERE SOONNN 😭💖",
+"I’M WAITING FOR YOU!!!"
+];
+
+let i = 0;
+let j = 0;
+
+function start() {
+  document.querySelector("button").style.display = "none";
+  document.getElementById("music").play();
+  typeWriter();
+}
+
+/* Typing */
+function typeWriter() {
+  if (i < message.length) {
+    if (j < message[i].length) {
+      document.getElementById("text").innerHTML += message[i].charAt(j);
+      j++;
+      setTimeout(typeWriter, 50);
+    } else {
+      document.getElementById("text").innerHTML += "<br><br>";
+      j = 0;
+      i++;
+      setTimeout(typeWriter, 500);
+    }
+  }
+}
+</script>
+
+</body>
+</html>
